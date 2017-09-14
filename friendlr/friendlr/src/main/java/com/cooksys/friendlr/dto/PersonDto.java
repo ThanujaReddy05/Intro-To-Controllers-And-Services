@@ -1,20 +1,23 @@
-package com.cooksys.friendlr.entity;
+package com.cooksys.friendlr.dto;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Person {
-	
+import com.cooksys.friendlr.entity.Person;
+
+public class PersonDto {
+
 	private Long id;
 	private String firstName;
 	private String lastName;
-	private Set<Person> friends = new HashSet<Person>();
+	private Set<Person> friends = new HashSet<>();
+	
 		
-	public Person() {
+	public PersonDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Person(Long id, String firstName, String lastName) {
+	public PersonDto(Long id, String firstName, String lastName) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -56,12 +59,5 @@ public class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Set<Person> getFriends() {
-		return friends;
-	}
 	
-	
-	
-	
-
 }
