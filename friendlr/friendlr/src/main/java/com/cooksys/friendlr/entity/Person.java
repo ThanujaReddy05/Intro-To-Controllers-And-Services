@@ -2,7 +2,7 @@ package com.cooksys.friendlr.entity;
 
 public class Person {
 	
-	private long id;
+	private Long id;
 	private String firstName;
 	private String lastName;
 	
@@ -11,7 +11,7 @@ public class Person {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Person(long id, String firstName, String lastName) {
+	public Person(Long id, String firstName, String lastName) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -20,13 +20,13 @@ public class Person {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	/**

@@ -12,23 +12,14 @@ public class PersonService {
 
 	private Set<Person> personsList = new HashSet<Person>();
 	
-	private static int count = 3;
+	private static Long count = 3L;
 	
 	public PersonService() {
-		Person p1 = new Person();
-		p1.setId(1);
-		p1.setFirstName("Thanuja");
-		p1.setLastName("Reddy");
-
+		Person p1 = new Person( 1L, "Thanuja", "Reddy");
 		personsList.add(p1);
-
-		Person p2 = new Person();
-		p2.setId(2);
-		p2.setFirstName("Nithya");
-		p2.setLastName("Reddy");
-
-		personsList.add(p2);
-
+		
+		Person p2 = new Person( 2L, "Nithya", "Reddy");
+		personsList.add(p2);		
 	}
 
 	public Set<Person> getPersonList() {
@@ -36,10 +27,12 @@ public class PersonService {
 		return personsList;
 	}
 
-	public Person getPersonId(long id) {
+	public Person getPersonId(Long id) {
+		//Look for the id in the personsList
+		
 		for(Person p : personsList)
 		{
-			if(p.getId() == id )
+			if(id.equals(p.getId() ) )
 			{
 				return p;
 			}
@@ -48,16 +41,17 @@ public class PersonService {
 	}
 
 	public Person createPerson(Person p) {
-		p.setId(count++);
+		p.setId(count++); // count to set the id
 		personsList.add(p);
 		return p;
 	}
 
-	public Person updatePerson(long id, Person p2) {
+	public Person putPerson(Long id, Person p2) {
 		for(Person p : personsList)
 		{
-			if(p.getId() == id )
+			if(id.equals(p.getId() ))
 			{
+				//Update the person firstName and lastName
 				p.setFirstName(p2.getFirstName());
 				p.setLastName(p2.getLastName());
 				return p;
@@ -66,30 +60,18 @@ public class PersonService {
 		return null;
 	}
 
-//	public boolean deletePerson(long id) {
-//		boolean idFound = false;
-//		for(Person p : personsList)
-//		{
-//			if(p.getId() == id )
-//			{
-//				personsList.remove(p);
-//				idFound = true;
-//			}
-//		}
-//		return idFound;
-//	}
 
-	public boolean deletePerson(long id) {
-		boolean idFound = false;
+	//Delete the person with specified id and return the deleted person object, null otherwise
+	public Person deletePerson(Long id) {
 		for(Person p : personsList)
 		{
 			if(p.getId() == id )
 			{
 				personsList.remove(p);
-				idFound = true;
+				return p;
 			}
 		}
-		return idFound;
+		return null;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.cooksys.frinedlr.controller;
+package com.cooksys.friendlr.controller;
 
 import java.util.Set;
 
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,7 +36,7 @@ public class PersonController {
 	}
 	
 	@GetMapping("{id}")
-	public Person getPersonId(@PathVariable long id, HttpServletResponse response)
+	public Person getPersonId(@PathVariable Long id, HttpServletResponse response)
 	{   
 		Person foundP = (Person) pService.getPersonId(id);
 		if(foundP == null)
@@ -68,9 +69,10 @@ public class PersonController {
 	
 	
 	@PutMapping("{id}")
-	public Person updatePerson(@RequestBody long id,@RequestBody Person p, HttpServletResponse response)
+	public Person updatePerson(@PathVariable Long id,@RequestBody Person p, HttpServletResponse response)
 	{
-		Person updatedPerson = pService.updatePerson(id,p);
+		System.out.println("IN put");
+		Person updatedPerson = pService.putPerson(id,p);
 		if(updatedPerson == null)
 		{
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -83,10 +85,10 @@ public class PersonController {
 	}
 	
 	@DeleteMapping("{id}")
-	public void deletePerson(@PathVariable long id,HttpServletResponse response)
+	public Person deletePerson(@PathVariable Long id,HttpServletResponse response)
 	{
-		boolean isFound = pService.deletePerson(id);
-		if(!isFound)
+		Person found = pService.deletePerson(id);
+		if(found == null)
 		{
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
@@ -95,7 +97,7 @@ public class PersonController {
 			response.setStatus(HttpServletResponse.SC_FOUND);
 		}
 		
-		  
+		  return found;
 	}
 }
 
