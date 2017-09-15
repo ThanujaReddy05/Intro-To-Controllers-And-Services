@@ -9,7 +9,7 @@ import com.cooksys.friendlr.entity.Person;
 @Mapper(componentModel= "spring" )
 public interface PersonMapper {
 
-PersonDto toPersonDto(Person person);
+	PersonDto toPersonDto(Person person);
 	
 	Person toPerson(PersonDto PersonDto);
 }
